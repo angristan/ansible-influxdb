@@ -1,0 +1,36 @@
+---
+
+- name: Add InfluxData APT key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+
+- name: Add InfluxData APT repo
+  apt_repository:
+    repo: "deb https://repos.influxdata.com/debian {{ ansible_distribution_release }} stable"
+    filename: influxdata
+
+- name: Install InfluxDB
+  apt:
+    name: influxdb
+
+- name: Enable and start InfluxDB service
+  service:
+    name: influxdb
+    state: started
+    enabled: true
+
+- name: Install pip dependencies
+  pip:
+    name:
+      - requests
+      - influxdb
+    state: latest
+
+- name: Create InfluxDB user
+  influxdb_user:
+    user_name: "{{ influxdb_username }}"
+    user_password: "{{ influxdb_password }}"
+
+- name: Create InfluxDB database
+  influxdb_database:
+      database_name: "{{ influxdb_database }}"
