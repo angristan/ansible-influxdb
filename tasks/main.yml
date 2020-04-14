@@ -24,7 +24,6 @@
     name:
       - requests
       - influxdb
-    state: latest
 
 - name: Create InfluxDB user
   influxdb_user:
