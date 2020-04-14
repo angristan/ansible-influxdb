@@ -23,7 +23,7 @@
   pip:
     name:
       - requests
-      - influxdb
+      - influxdb==5.2.3
 
 - name: Create InfluxDB user
   influxdb_user:
