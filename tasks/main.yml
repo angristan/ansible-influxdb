@@ -9,6 +9,13 @@
     repo: "deb https://repos.influxdata.com/debian {{ ansible_distribution_release }} stable"
     filename: influxdata
 
+- name: Copy InfluxDB configuration
+  template:
+    src: influxdb.conf.j2
+    dest: /etc/influxdb/influxdb.conf
+    mode: '644'
+  notify: influxdb restart
+
 - name: Install InfluxDB
   apt:
     name: influxdb

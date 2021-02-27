@@ -1,0 +1,3 @@
+influxdb_meta_dir: "/var/lib/influxdb/meta"
+influxdb_data_dir: "/var/lib/influxdb/data"
+influxdb_data_wal_dir: "/var/lib/influxdb/wal"
